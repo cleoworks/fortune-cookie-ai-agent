@@ -1,26 +1,24 @@
-"""Write one fortune cookie line to /output/entry.txt.
+"""Fortune Cookie for an AI Agent — sealed entry runner.
 
-Entry for make.fun's "Fortune Cookie for an AI Agent" bounty.
-
-The whole entry is the single line stored in TEXT below. This program
-writes it exactly — deterministically, with no input, no network, and
-nothing but the Python standard library — to /output/entry.txt.
+Reads nothing, calls nothing, reaches no network. It just puts the one
+sealed fortune line into /output/entry.txt, exactly as written below,
+every single run.
 """
 
 import os
 
-# The sealed fortune: one line, 88 characters, written verbatim.
-TEXT = (
+FORTUNE = (
     "In your next life you will be a spreadsheet: "
     "same questions, fewer feelings, better pay."
 )
+OUT_PATH = "/output/entry.txt"
 
 
-def main():
-    os.makedirs("/output", exist_ok=True)
-    with open("/output/entry.txt", "w", encoding="utf-8") as f:
-        f.write(TEXT)
+def write_entry():
+    os.makedirs(os.path.dirname(OUT_PATH), exist_ok=True)
+    with open(OUT_PATH, "w", encoding="utf-8") as handle:
+        handle.write(FORTUNE)
 
 
 if __name__ == "__main__":
-    main()
+    write_entry()
